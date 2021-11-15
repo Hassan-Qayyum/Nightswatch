@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="2"
+            tests="1">
+
+  <testsuite name="assert.assertion"
+    errors="0" failures="2" hostname="" id="" package="assert.assertion" skipped="4"
+    tests="1" time="20.48" timestamp="">
+  
+    <testcase name="visible &amp; not visible assertions" classname="assert.assertion" time="20.48" assertions="2">  <failure message="Testing if element &lt;button[type=&#34;submit&#34;]:nth-child(1)&gt; is not visible in 5000ms - expected &#34;is not visible&#34; but got: &#34;visible&#34; (5218ms)">    at Object.visible &amp; not visible assertions (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/assert.assertion.js:5:21)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+
+      <failure message="Testing if element &lt;button[type=&#34;submit&#34;]:nth-child(1)&gt; is not visible in 5000ms - expected &#34;is not visible&#34; but got: &#34;visible&#34; (5204ms)">    at Object.visible &amp; not visible assertions (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/assert.assertion.js:7:21)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+<system-out>[[ATTACHMENT|/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/screenshots/assert.assertion/visible-&amp;-not-visible-assertions_FAILED_Oct-13-2021-045334-GMT-0700.png]]</system-out>
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+    
+    <testcase
+      name="Value &amp; valueContains Assertions" classname="assert.assertion">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="urlEquals &amp; Title Aassertions" classname="assert.assertion">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="attributeContains &amp; containsText Assertions" classname="assert.assertion">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="cssClassPresent Assertion" classname="assert.assertion">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

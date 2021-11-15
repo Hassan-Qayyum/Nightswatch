@@ -1,0 +1,1072 @@
+Nightswatch.js
+
+End-to-End testing solution for browser based applications and websites
+
+Pros and cons
+1- can execute different user contexts at a time in different browser in the same test.
+2- Has its own assertion library and test runner
+3- Simple and powerful syntax
+4- It makes CICD much easier and smooth
+5- It allows to integrate tests with the system such as Jenkins, timecity etc
+
+1- It has less support
+2- It has minimum choices for unit testing because it has its own testing framework and supports mocha
+
+
+Installation & Configurations
+
+mkdir nightwatch-tutorial
+cd nightwatch-tutorial
+npm init -y
+code .
+
+npm install nightwatch chromedriver
+
+
+
+Nightwatch Project Structure
+
+Base configuration file 
+
+1. nightwatch.json 
+
+
+2. Place following code in nightwatch.json file
+
+{
+    "src_folders”: ["tests"],
+
+    "webdriver" :{
+        "start_process": true,
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+    },
+    
+    "test_settings": {
+        "default": {
+            "desiredCapabilities":{
+                "browserName": "chrome"
+            }
+        }
+    }
+}
+
+Base configuration file contains
+src-folder
+webdriver
+test-settings (in this file we mostly write browser configurations)
+
+
+
+
+
+3. Create tests folder
+    1. test.file.js (Create first sample test file)
+        * Place following code in it
+
+module.exports = {
+    'Filling out form': (client)=>{
+        client.url('https://www.ultimateqa.com/filling-out-forms')
+        .waitForElementVisible('body', 1000)
+        .assert.title('Filling Out Forms - Ultimate QA')
+        .waitForElementVisible('#et_pb_contact_name_0')
+        .setValue('#et_pb_contact_name_0', 'Dimitri')
+        .setValue('#et_pb_contact_name_0', 'this is a paragraph')
+        .click('.et_pb_contact_submit')
+        .waitForElementVisible('#et_pb_contact_form_0')
+        .expect.element('#et_pb_contact_form_0').text.to.equal('Form filled out')
+
+
+    }
+}
+
+Execute Tests 
+
+For All Tests
+./node_modules/.bin/nightwatch
+
+Note: client argument is an browser object
+
+Test Runners
+
+- Nightswatch has its own test runner and assertions libraries
+
+1. Nightswatch Test Suit
+
+Create following file in tests folder
+
+- nightwatch.basic.test.js
+
+Place following code in this file
+
+module.exports = {
+	“Confirming Form Page Title”: (client)=>{
+client.url ( “https://www.ultimateqa.com/filling-out-forms” )
+.waitForElementVisible (‘body’)
+.assert.title(‘Filling Out Forms - Ultimate QA’)
+
+}
+ 
+}
+
+
+For Single Test execution use following command
+
+./node_modules/.bin/nightwatch -t ./tests/nightwatch.basic.test.js
+
+
+2. Mocha
+
+Mocha gives option to use bdd interface (describe, it) to write your test runner using default test runner.
+
+Nightswatch has created their own mocha interface since 1.3 version.
+
+
+
+- Create a file 
+    * nightwatch_mocha.json
+
+Place following code in the nightwatch_mocha.json file.
+
+{
+    "src_folders”: ["tests"],
+
+    "webdriver" :{
+        "start_process": true,
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+    },
+    
+    "test_settings": {
+        "default": {
+            "desiredCapabilities":{
+                "browserName": "chrome"
+            }
+        }
+    },
+	“test_runner”: {
+	“type”: “mocha”,
+	“options”: {
+	“ui”: “bdd”
+	“reporter”: “spec”
+}
+}
+
+}
+
+- Create a folder
+    * tests_mocha
+
+- Create a test file under tests_mocha folder
+    * mocha.basic.test.js
+
+In mocha.basic.test.js file place following code
+
+describe(“Mocha suit”, ()=>{
+	it(“Confirm Page Title”, (client)=>{
+
+	client
+		.url(“https://www.ultimateqa.com/filling-out-forms“)
+		.waitForElementVisible(‘body’)
+		.assert.title (“Filling Out Forms - Ultimate QA”)
+
+})
+}
+
+Execute Test
+
+Since there are two configuration files (nightwatch.json & nightwatch_mocha.json) therefore we need to run test like following
+
+./node_modules/.bin/nightwatch -c nightwatch_module.json -t ./tests_mocha/mocha.basic.test.js 
+
+
+
+3. Finding Elements
+
+Many ways to find element but the best one is .element()  function
+
+Create new file in “tests” folder
+
+- finding.elements.js
+
+Place following code in above file
+
+module.exports = {
+“demo Test”: function (browser) {
+
+	browser
+	.url(‘https://www.ultimateqa.com/filling-out-forms')
+	.element(‘css selector’, ‘body’, function(result){
+	console.log(result.value)
+
+});
+
+‘Es6 async demo Test’: async function (browser) {
+	const result = await browser.element(‘css selector’, ‘body’);
+console.log(‘result value is:’, result.value);
+}
+}
+
+}
+
+
+Execute Test
+
+./node_modules/.bin/nightwatch -t ./tests/finding.elements.js
+
+
+
+	3.1.	Element Interaction
+
+.clearValue()
+.click()
+.moveToElement
+.sendKeys
+.setValue
+
+
+Create new file in “tests” folder
+
+- interacting.elements.js
+
+Place following code in this file
+
+module.exports = {
+“Interacting with Elements”: (client)=>{
+	        client.
+        url('https://www.ultimateqa.com/filling-out-forms')
+        .waitForElementVisible('#et_pb_contact_name_0')
+        .setValue("#et_pb_contact_name_0", 'Testing')
+        .pause(2000)
+        .clearValue('#et_pb_contact_name_0')
+        .pause(2000)
+        .setValue("#et_pb_contact_name_0","Again Entering Value")
+        .pause(2000)
+        .clearValue('#et_pb_contact_name_0')   
+        .pause(2000) 
+        .waitForElementVisible('button[type="submit"]:nth-child(1)')
+        .moveToElement('button[type="submit"]:nth-child(1)', 10, 10)
+        .pause(2000)
+
+
+}
+}
+
+
+		3.2	Element State
+
+getText() ==> returns visible text for an element
+
+getValue() ==> getText() cannot return visible text for an form element therefore we use getValue()
+isVisible() => returns true or false 
+
+
+Create new file in “tests” folder
+
+- element.state.js
+
+module.exports = {
+
+“Element State”: (client)=>{
+	client
+	.url(‘https://www.ultimateqa.com/filling-out-forms')
+	.getText(“button[type=“submit”]:nth-child(1)”, (result)=>{
+	console.result(result.value)
+})
+
+.setValue(“#et_pb_contact_name_0”, “Testing”)
+.getValue(“#et_pb_contact_name_0”, (result)=>{
+	console.log(result.value)
+})
+
+        .isVisible("#et_pb_contact_name_0", (result)=>{
+            console.log(result.value)
+        })
+
+}
+
+}
+
+
+	3.3	Navigation
+
+init() function => it is alias, which allow us to call .url() with passing the value of launch_url field from the settings file.
+back() => To go back to the browser history
+forward()=> To go forward to the browser history
+getTitle( (title) => console.log(title)) => To get title of the Web page
+.refresh()=> To refresh the page
+.urlHash() => returns the hash value in the url
+
+
+Create new file in “tests” folder
+
+- navigation.js
+
+module.exports = {
+
+“should navigate by default ”: (client)=>{
+
+client.init()
+.pause(2000)
+.getTitle((title)=> console.log(title))
+.url(‘https://www.ultimateqa.com/filling-out-forms')
+.getTitle((title)=> console.log (title))
+.back()
+.getTitle((title)=>console.log(title))
+.forward() .getTitle((title)=>console.log(title))
+.urlHash(‘#random’)
+
+}
+
+Also add following line under default section in configuration file (nightwatch.json)
+
+“launch_url”: “https://www.ultimateqa.com”
+
+
+
+
+
+4. User Actions & Prompts
+
+.keys => sends sequence of stroke to an active element
+
+Create new file in “tests” folder
+
+- userActions.prompts.js
+
+
+module.exports = {
+    "User Actions & Prompts": (client) =>{
+        client
+        .url("https://www.ultimateqa.com/filling-out-forms")
+        .pause(2000)
+        .setValue('#et_pb_contact_message_0'," Testing sequence of strokes to an active elements...")
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.ENTER)
+        .pause(2000)
+        .keys(client.Keys.SUBTRACT)
+        .pause(2000)
+
+    }
+}
+
+
+
+	4.1.	Mouse Interaction
+
+mouseButtonClick() => click at the current mouse coordinates (set by .saveTo())
+
+
+Create new file in “tests” folder
+
+- mouse.interaction.js
+
+
+
+ module.exports = {
+    "User Actions & Prompts": (client) =>{
+        client
+        .url("https://www.ultimateqa.com/filling-out-forms")
+        .pause(2000)
+        .setValue('#et_pb_contact_message_0'," Testing sequence of strokes to an active elements...")
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.ENTER)
+        .pause(2000)
+        .keys(client.Keys.SUBTRACT)
+        .pause(2000)
+
+    },
+
+    "Mouse interaction": (client) =>{
+        client
+        .mouseButtonClick('right')
+        .pause(2000)
+        .mouseButtonClick('left')
+        .pause(2000)
+    }
+
+}
+
+
+	4.2.	Navigation
+
+.openNewWindow() / openNewWindow(‘tab’) => It opens the new window tab.
+.fullscreenWindow() => it opens the window in full screen
+.windowHandles() => It handles the windows
+.switchWindow() => It focus on a windows
+
+
+Create new file in “tests” folder
+
+- window.navigation.js
+
+module.exports = {
+    "User Actions & Prompts": (client) =>{
+        client
+        .url("https://www.ultimateqa.com/filling-out-forms")
+        .pause(2000)
+        .setValue('#et_pb_contact_message_0'," Testing sequence of strokes to an active elements...")
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.BACK_SPACE)
+        .pause(2000)
+        .keys(client.Keys.ENTER)
+        .pause(2000)
+        .keys(client.Keys.SUBTRACT)
+        .pause(2000)
+
+    },
+
+    "Mouse interaction": (client) =>{
+        client
+        .mouseButtonClick('right')
+        .pause(2000)
+        .mouseButtonClick('left')
+        .pause(2000)
+    },
+
+    "Window Navigation": (client) =>{
+        client
+        .openNewWindow()
+        // .openNewWindow('tab') // tab is optional argument
+        .fullscreenWindow()
+        .windowHandles((results)=>{
+            const newWindow = results.value[1]
+            client.switchWindow(newWindow)
+        .pause(5000)
+
+        })
+        .pause(5000)
+
+    }
+
+}
+
+
+	4.3.	Alerts
+
+.acceptAlert () => It accepts the current alert, also equivalent to the Ok button on dialog
+dismissAlert() => It is opposite, 
+getAlertText()=> it gets alert text
+setAlertText()=> it sets the alert text
+
+Create new file in “tests” folder
+
+- alert.js
+
+module.exports = {
+    "Window Alert": (client) =>{
+        client
+        .url('https://demoqa.com/alerts')
+        .click('#promtButton')
+        .getAlertText((result)=>{
+            console.log(result.value)
+        })
+        .setAlertText("Setting Custom Alert Text")
+        .acceptAlert()
+        .click('#alertButton')
+        .dismissAlert()
+        .pause(5000)
+
+    }
+
+}
+
+
+
+
+5. Expect And Assert
+
+Two build in assertion libraries
+
+assert => it extends the node.js assertion module and it has limited options. assert can also be used as verify.
+The only difference between verify and assert is that if assert gets failed then other all tests will not execute while if verify gets failed then other tests will execute.
+expect => It is based on Chai assertion library which means more options, it also provides facility of language chaining which makes assertion readability more easy
+
+
+Create new file in “tests” folder
+
+- expect.assert.assertion.js
+
+
+module.exports = {
+    "Expect Assertion": (client)=>{
+        client
+        .url('https://www.ultimateqa.com/filling-out-forms')
+        .expect.element('button[type="submit"]:nth-child(1)').text.to.equal("Submit")
+
+    },
+    
+    "Verify Assertion": (client)=>{
+        client.url('https://www.ultimateqa.com/filling-out-forms')
+        .verify.not.visible('button[type="submit"]:nth-child(1)') // this will fail but following assertion and test will execute
+        .assert.visible('button[type="submit"]:nth-child(1)')
+
+    },
+
+    "Assert Assertion":(client)=>{
+        client
+        .url("https://www.ultimateqa.com/filling-out-forms")
+        .assert.not.visible('button[type="submit"]:nth-child(1)') // this will fail and following assertion will not execute
+        .assert.visible('button[type="submit"]:nth-child(1)')
+    }
+}
+
+
+
+	5.1.	Assert
+
+Assert library has different methods
+
+visible() => element should be visible
+not.visible() => element should not be visible
+valueContains() => should contain value
+value()=> should be exactly equal to the value
+urlEquals() => url should be equal
+title() => validate the title of the web
+attributeContains() => Given element’s attribute contains the value or not
+containsText() => should contain text
+cssClassPresent() => css class should be present
+
+
+Create new file in “tests” folder
+
+- assert.assertion.js
+
+
+module.exports = {
+    "visible & not visible assertions": (client)=>{
+        client
+        .url('https://www.ultimateqa.com/filling-out-forms')
+        .verify.not.visible('button[type="submit"]:nth-child(1)')
+        .assert.visible('button[type="submit"]:nth-child(1)')
+    },
+    "Value & valueContains Assertions": (client)=>{
+        client
+        .setValue('#et_pb_contact_message_0','Setting Value For Testing')
+        .assert.valueContains('#et_pb_contact_message_0',"Testing")
+        .verify.value('#et_pb_contact_message_0','Setting Value For Testing')
+
+    },
+    "urlEquals & Title Aassertions":(client)=>{
+        client.verify.urlEquals('https://www.ultimateqa.com/filling-out-forms')
+        .verify.title('Filling Out Forms - Ultimate QA')
+    },
+    "attributeContains & containsText Assertions": (client)=>{
+        client.verify.containsText('button[type="submit"]:nth-child(1)', 'Submit')
+        .verify.attributeContains('#et_pb_contact_message_0', "placeholder", 'Message')
+    },
+    "cssClassPresent Assertion": (client)=>{
+        client.verify.cssClassPresent('#et_pb_contact_message_0','input')
+    }
+
+}
+
+
+
+	5.2.	Expect
+
+equal() => expects to be equal
+contain() => expects to contain something
+match() => expects to match something
+
+Create new file in “tests” folder
+
+- expect.assertion.js
+
+module.exports = {
+
+    "Visible": (client)=>{
+        client
+        .url('https://www.ultimateqa.com/filling-out-forms')
+        .expect.element('button[type="submit"]:nth-child(1)').text.equal('Submit')
+    },
+    "urlEquals & Title Aassertions":(client)=>{
+        client.expect.title().to.equal('Filling Out Forms - Ultimate QA')
+        .url('https://www.ultimateqa.com/filling-out-forms')
+        .pause(2000)
+        .assert.urlContains('/filling-out-forms')
+
+    },
+    "Value & valueContains Assertions": (client)=>{
+        client
+        .setValue('#et_pb_contact_message_0','Setting Value For Testing')
+        .expect.element('#et_pb_contact_message_0').to.have.value.which.contain("Setting")
+    },
+
+    "attributeContains & containsText Assertions": (client)=>{
+        client.expect.element('#et_pb_contact_message_0').to.have.attribute("placeholder").which.contain('Message')
+    },
+    "cssClassPresent Assertion": (client)=>{
+        client.expect.element('#et_pb_contact_message_0').to.have.attribute('class').which.contain('input')
+    }
+
+
+
+}
+
+
+    6. test.hooks.js
+
+before() => This will ran before our suite
+after() => This will ran after our suite was executed
+beforeEach() => This will ran before each test within our suite
+afterEach() => This will ran after each test within our test suit
+
+
+
+Create new file in “src_folders” folder
+
+- test.hooks.js
+
+module.exports = {
+before: (client) =>{
+console.log(“Starting Up”)
+} ,
+
+after: (client) =>{
+console.log(“Closing Down”)
+},
+
+beforeEach: (client)=>{
+client.url(‘https://www.ultimateqa.com/filling-out-forms’)
+},
+
+afterEach: (client)=>{
+console.log(“Test Completed”)
+},
+
+“Should verify page title”: (client)=>{
+client.expect.title().which.contains(‘Filling Out Forms’)
+},
+
+“Should verify page url”: (client)=>{
+Client.assert.urlContains(‘filling-out-forms’)
+}
+}
+
+
+Create new folder “globals”
+- Create new file in “globals” folder
+    - globalModule.js
+
+
+Place following line in nightwatch.json file under webdriver
+
+“globals_path”: “globals/globalModule”
+
+before() => executed before selenium session is created
+after()=> executed after selenium session is closed
+beforeEach() => 
+
+
+module.exports = {
+    before: (done)=>{
+        console.log('before')
+        done();
+    },
+    after: (done)=>{
+        console.log('after')
+        done()
+    },
+    beforeEach: (client,done)=>{
+        console.log('beforeEach')
+        client.status(result=>{
+            console.log(result.value)
+        })
+        done()
+    },
+    afterEach: (client, done)=>{
+        console.log('afterEach')
+        client.status(result=>{
+            console.log(result.value)
+        })
+        done()
+    }
+}
+
+
+
+
+7. Simple Test
+
+Create new file in “tests” folder
+
+- simple.test.js
+
+module.exports = {
+    beforeEach: (client)=>{
+        client.url(`${client.launch_url}/filling-out-forms`)
+    },
+    "Simple Test => Filling out left form ": async (client)=>{
+            client.setValue('[id = "et_pb_contact_name_0"]', 'Testing')
+            .pause(5000)
+            .setValue('[id = "et_pb_contact_message_0"]', 'Wrting text area')
+            .pause(5000)
+
+            .click('[class = "et_pb_contact_submit et_pb_button"]')
+            .pause(5000)
+            .expect.element('[class="et-pb-contact-message"]').text.to.be.equal('Thanks for contacting us')
+    },
+    "verify Error message in case of empty form": (client)=>{
+        client
+            .refresh()
+            .pause(5000)
+            .click('[class = "et_pb_contact_submit et_pb_button"]')
+            .pause(5000)
+            .verify.containsText('[class="et-pb-contact-message"]', "Please, fill in the following fields:\nName\nMessage")
+
+    }
+}
+
+
+	7.1	Page Object
+
+Place following line in “nightwatch.json” file under “src_folders”
+
+"page_objects_path": ["pageObjects"],
+
+
+Create new file in “pageObjects” folder
+
+- FormPage.js
+
+const elements = {
+    // shorthand definition
+    leftFormName: '[id = "et_pb_contact_name_0"]',
+    // full definition
+    leftFormMessage: {
+        selector:   '[id = "et_pb_contact_message_0"]',
+        locateStrategy: 'css selector'
+    },
+    submitBtn: '.et_pb_contact_submit:nth-child(1)',
+    lblLeftFormMessage: '.et-pb-contact-message>p'
+};
+const commands = [
+
+    
+    {
+        /* 
+        *   Enters the name and message into the left form fields
+        * @param {String} name
+        * @param {String} message
+        */
+        enterNameAndMessage(name, message){ 
+            this.setValue('@leftFormName', name)
+            this.setValue('@leftFormMessage', message)
+            this.pause(5000)
+        }
+    },
+    {
+        submitLeftForm(){
+            this.click('@submitBtn')
+            this.pause(10000)
+        }
+        
+    }
+
+
+
+];
+
+
+module.exports = {
+
+    elements: elements,
+    commands: commands,
+    url: function(){
+        return `${this.api.launch_url}/filling-out-forms/`
+    },
+
+    sections:   {
+        rightForm:{
+            selector:  '#et_pb_contact_form_1', // parent form id
+            elements: {
+                txtName: '#et_pb_contact_name_1',
+                txtMessage: '#et_pb_contact_message_1',
+                btnSubmit: 'button' // this is the only button in the right form therefore we simply write it as button
+
+            },
+            commands:[
+                {
+                    enterName(name){
+                        return this.setValue('@txtName')
+                    }
+                }
+            ]
+        }
+    }
+
+
+}
+
+
+
+Create new file in “tests” folder
+
+- formPage.js
+
+
+module.exports = {
+    // beforeEach: (client)=>{
+    //     client.url(`${client.launch_url}/filling-out-forms`)
+    // },
+    "Should successfully fill out the left form fields - Page Obbject":function (client){
+        const FormPage = client.page.FormPage();
+        FormPage
+            .navigate()
+            .verify.title('Filling Out Forms - Ultimate QA')
+            .enterNameAndMessage('John','Entering the message')
+        FormPage
+            .submitLeftForm()
+        FormPage.verify.containsText('@lblLeftFormMessage', 'Thanks for contacting us')
+        
+        const rightForm = FormPage.section.rightForm
+        rightForm
+            .expect.element('@txtName').to.be.visible
+
+    }
+}
+
+
+
+
+	7.2	Mocha Data Driven
+
+Why mocha test runner over default test runner?
+
+Because it supports dynamic test creation so therefore we can write test dynamically and can assert data dynamically.
+
+
+First Simply execute above Page Objects Module Code in Mocha Test Runner
+
+
+Create new file in “tests_mocha” folder
+
+- mocha.formPage.test..js
+
+describe("Filling the Ultimate QA Forms with Mocha Suit", ()=>{
+    it("Should fill the left form",(client)=>{
+        const FormPage = client.page.FormPage()
+        FormPage
+            .navigate()
+            .verify.title('Filling Out Forms - Ultimate QA')
+            .enterNameAndMessage('Hassan', 'I am submitting the form')
+        FormPage.submitLeftForm()
+        FormPage.verify.containsText('@lblLeftFormMessage', "Thanks for contacting us")
+
+
+        const rightForm = FormPage.section.rightForm
+        rightForm.expect.element('@txtName').to.be.visible
+    })
+})
+
+
+Create new file in “globals” folder
+
+- data.js
+
+module.exports = [
+    {
+        testCase: "Should show name error message",
+        name: "",
+        message: "",
+        expected: "Please, fill in the following fields:\nName"
+
+    },
+    {
+        testCase: "Should show message error",
+        name: "Hassan",
+        message: "",
+        expected: "Please, fill in the following fields:\nMessage"
+
+    },
+    {
+        testCase: "Should show name & message errors",
+        name: "",
+        message: "",
+        expected: "Please, fill in the following fields:\nName\nMessage"
+    }
+]
+
+
+
+Create new file in “tests_mocha” folder
+
+- mocha.data.driven.test.js
+
+const data = require("../globals/data")
+
+describe("Ultimate QA Forms-Validations Cases",()=>{
+    it("Should check the validations of the forms", (client)=>{
+        data.forEach(({testCase,name,message,expected})=>{
+            const FormPage = client.page.FormPage()
+            FormPage
+            .navigate()
+            .verify.title('Filling Out Forms - Ultimate QA')
+            .enterNameAndMessage(name,message)
+            FormPage.submitLeftForm()
+            FormPage.verify.containsText('@lblLeftFormMessage',expected)
+
+        })
+    })
+})
+
+
+	7.3	Saving Screenshot
+
+        client.saveScreenshot('./screen_evidence/firstScreenshot')
+
+This command will save the Screenshot in screen_evidence folder by firstScreenshot name
+
+
+
+8. Debugging
+
+For test debugging you may use pause method but recommended is that to enable/ the screenshots.
+
+nightwatch.json (configuration file)
+
+Under test settings in default section add 
+
+            "screenshots": {
+                "enabled": true,
+                "on_failure": true,
+                "on_error": false,
+                "path": "screenshots"
+            },
+
+
+	8.1	Reporting
+
+Nightwatch has 2 reporters
+
+- std out (terminal output report)
+- junit output ( it is in xml )
+
+Custom Report => for custome report use ‘reporter’ in globals file like following
+
+
+globalModule.js
+
+const fs = require('fs')
+module.exports = {
+
+    reporter: (results,done)=>{
+        fs.writeFile('testresults.json', JSON.stringify(results,null,'\t'),(err)=>{
+            if(err) throw err;
+
+            console.log('report saved');
+            done()
+        })
+    }
+}
+
+This will create testresults.json file and will store test results in it.
+
+
+
+How to run a specific test?
+
+npm test -- -t ./tests_mocha/mocha.basic.test.js            
+
+
+
+General Files
+
+nightwatch.json
+
+{
+    "src_folders": ["tests"],
+    "page_objects_path": [ "pageObjects" ],
+
+
+    "webdriver" :{
+        "start_process": false,
+        "globals_path": "globals/globalModule",
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+    },
+    
+    "test_settings": {
+        "default": {
+            "screenshots" : {
+                "enabled" : true,
+                "path" : "screenshots",
+                "on_failure": true,
+                "on_error": true
+            },
+            "launch_url": "https://www.ultimateqa.com",
+            "desiredCapabilities":{
+                "browserName": "chrome"
+            }
+        }
+    }
+}
+
+
+
+
+nightwatch_mocha.json
+
+
+{
+    "src_folders": ["tests"],
+
+    "webdriver" :{
+        "start_process": false,
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+    },
+    
+    "test_settings": {
+        "default": {
+            "desiredCapabilities":{
+                "browserName": "chrome"
+            }
+        }
+    },
+    "test_runner":{
+        "type" : "mocha",
+        "options":{
+            "ui": "bdd",
+            "reporter": "spec"
+
+        }
+    }
+}
+
+
+package.json
+
+{
+  "name": "Nightswatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nightwatch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^94.0.0",
+    "nightwatch": "^1.7.11"
+  }
+}
+
+
+
+
+
+

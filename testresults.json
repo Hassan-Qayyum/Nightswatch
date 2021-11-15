@@ -1,0 +1,206 @@
+{
+	"passed": 6,
+	"failed": 0,
+	"errors": 0,
+	"skipped": 0,
+	"tests": 0,
+	"assertions": 6,
+	"errmessages": [],
+	"modules": {
+		"mocha/mocha.data.driven.test": {
+			"reportPrefix": "CHROME_94.0.4606.81_Mac_OS_X_",
+			"assertionsCount": 6,
+			"lastError": null,
+			"skipped": [],
+			"time": "60.76",
+			"completed": {
+				"Should check the validations of the forms": {
+					"time": "60.31",
+					"assertions": [
+						{
+							"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+							"failure": false
+						},
+						{
+							"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+							"failure": false
+						},
+						{
+							"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+							"failure": false
+						},
+						{
+							"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+							"failure": false
+						},
+						{
+							"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+							"failure": false
+						},
+						{
+							"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+							"stackTrace": "",
+							"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+							"failure": false
+						}
+					],
+					"passed": 6,
+					"errors": 0,
+					"failed": 0,
+					"skipped": 0,
+					"tests": 6,
+					"steps": [],
+					"stackTrace": "",
+					"testcases": {
+						"Should check the validations of the forms": {
+							"time": "60.31",
+							"assertions": [
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+									"failure": false
+								}
+							],
+							"tests": 6,
+							"passed": 6,
+							"errors": 0,
+							"failed": 0,
+							"skipped": 0,
+							"steps": [],
+							"stackTrace": "",
+							"timeMs": 60309
+						}
+					},
+					"timeMs": 60309
+				},
+				"Subbmiut": {
+					"time": "0.4460",
+					"assertions": [],
+					"passed": 0,
+					"errors": 0,
+					"failed": 0,
+					"skipped": 0,
+					"tests": 0,
+					"steps": [],
+					"stackTrace": "",
+					"testcases": {
+						"Should check the validations of the forms": {
+							"time": "60.31",
+							"assertions": [
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName'\u001b[0m \u001b[0;90m(39ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(10ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nMessage'\u001b[0m \u001b[0;90m(37ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if the page title equals \u001b[0;33m'Filling Out Forms - Ultimate QA'\u001b[0m \u001b[0;90m(14ms)\u001b[0m",
+									"failure": false
+								},
+								{
+									"message": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+									"stackTrace": "",
+									"fullMsg": "Testing if element \u001b[0;33m<Element [name=@lblLeftFormMessage]>\u001b[0m contains text \u001b[0;33m'Please, fill in the following fields:\nName\nMessage'\u001b[0m \u001b[0;90m(36ms)\u001b[0m",
+									"failure": false
+								}
+							],
+							"tests": 6,
+							"passed": 6,
+							"errors": 0,
+							"failed": 0,
+							"skipped": 0,
+							"steps": [],
+							"stackTrace": "",
+							"timeMs": 60309
+						},
+						"Subbmiut": {
+							"time": "0.4460",
+							"assertions": [],
+							"tests": 0,
+							"passed": 0,
+							"errors": 0,
+							"failed": 0,
+							"skipped": 0,
+							"steps": [],
+							"stackTrace": "",
+							"timeMs": 446
+						}
+					},
+					"timeMs": 446
+				}
+			},
+			"errmessages": [],
+			"testsCount": 2,
+			"skippedCount": 0,
+			"failedCount": 0,
+			"errorsCount": 0,
+			"passedCount": 6,
+			"group": "tests_mocha",
+			"modulePath": "/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests_mocha/mocha.data.driven.test.js",
+			"tests": 2,
+			"failures": 0,
+			"errors": 0
+		}
+	}
+}

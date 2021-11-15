@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="formPage.test"
+    errors="1" failures="0" hostname="" id="" package="formPage.test" skipped="0"
+    tests="1" time="0.005000" timestamp="">
+  
+    <testcase name="Should successfully fill out the left form fields - Page Obbject" classname="formPage.test" time="0.005000" assertions="0">
+    <error message="Cannot read property &#39;FormPage&#39; of undefined" type="error"><![CDATA[
+    TypeError: Cannot read property &#39;FormPage&#39; of undefined
+    at Object.Should successfully fill out the left form fields - Page Obbject (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/formPage.test.js:6:39)
+    at Context.call (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/context.js:376:35)
+    at TestCase.run (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/testcase.js:58:31)
+    at Runnable.__runFn (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/index.js:384:80)
+    at Runnable.run (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/runnable.js:123:21)
+    at TestSuite.createRunnable (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/index.js:496:33)
+    at TestSuite.handleRunnable (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/index.js:501:18)
+    at /Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/testsuite/index.js:384:21
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async DefaultRunner.runTestSuite (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/node_modules/nightwatch/lib/runner/test-runners/default.js:68:7)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+        TypeError: Cannot read property &#39;FormPage&#39; of undefined
+       at Object.Should successfully fill out the left form fields - Page Obbject (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/formPage.test.js:6:39)
+       at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

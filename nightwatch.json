@@ -1,0 +1,27 @@
+{
+    "src_folders": ["tests"],
+    "page_objects_path": [ "pageObjects" ],
+    "globals_path": "globals/globalModule",
+
+
+    "webdriver" :{
+        "start_process": false,
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+    },
+    
+    "test_settings": {
+        "default": {
+            "screenshots" : {
+                "enabled" : true,
+                "path" : "screenshots",
+                "on_failure": true,
+                "on_error": true
+            },
+            "launch_url": "https://www.ultimateqa.com",
+            "desiredCapabilities":{
+                "browserName": "chrome"
+            }
+        }
+    }
+}

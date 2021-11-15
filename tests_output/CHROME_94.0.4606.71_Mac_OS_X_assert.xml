@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="2"
+            tests="3">
+
+  <testsuite name="assert"
+    errors="0" failures="2" hostname="" id="" package="assert" skipped="2"
+    tests="3" time="20.04" timestamp="">
+  
+    <testcase name="visible &amp; not visible assertions" classname="assert" time="14.81" assertions="2">  <failure message="Testing if element &lt;button[type=&#34;submit&#34;]:nth-child(1)&gt; is not visible in 5000ms - expected &#34;is not visible&#34; but got: &#34;visible&#34; (5195ms)">    at Object.visible &amp; not visible assertions (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/assert.js:5:21)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Value &amp; valueContains Assertions" classname="assert" time="0.1400" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="urlEquals &amp; Title Aassertions" classname="assert" time="5.085" assertions="1">  <failure message="Testing if the URL is &#39;https://www.ultimateqa.com/filling-out-forms&#39; in 5000ms - expected &#34;is &#39;https://www.ultimateqa.com/filling-out-forms&#39;&#34; but got: &#34;https://ultimateqa.com/filling-out-forms&#34; (5084ms)">    at Object.urlEquals &amp; Title Aassertions (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/assert.js:16:23)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+    
+    <testcase
+      name="attributeContains &amp; containsText Assertions" classname="assert">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="cssClassPresent Assertion" classname="assert">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

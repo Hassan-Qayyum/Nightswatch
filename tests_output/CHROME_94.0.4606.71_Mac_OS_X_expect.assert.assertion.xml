@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="2">
+
+  <testsuite name="expect.assert.assertion"
+    errors="0" failures="1" hostname="" id="" package="expect.assert.assertion" skipped="0"
+    tests="2" time="10.04" timestamp="">
+  
+    <testcase name="Expect Assertion" classname="expect.assert.assertion" time="3.914" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Verify Assertion" classname="expect.assert.assertion" time="6.122" assertions="2">  <failure message="Testing if element &lt;button[type=&#34;submit&#34;]:nth-child(1)&gt; is not visible in 5000ms - expected &#34;is not visible&#34; but got: &#34;visible&#34; (5187ms)">    at Object.Verify Assertion (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/expect.assert.assertion.js:11:21)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

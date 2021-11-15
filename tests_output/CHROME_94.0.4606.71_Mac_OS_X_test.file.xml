@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="test.file"
+    errors="0" failures="1" hostname="" id="" package="test.file" skipped="0"
+    tests="1" time="12.49" timestamp="">
+  
+    <testcase name="Filling out form" classname="test.file" time="12.49" assertions="5">
+
+    
+
+    
+
+    
+
+      <failure message="Expected element &lt;#et_pb_contact_form_0&gt; text to equal: &#34;Form filled out Successfully&#34; - expected &#34;equal &#39;Form filled out Successfully&#39;&#34; but got: &#34;Make sure you fill in all required fields.
+Submit&#34; (5072ms)">    at Object.Filling out form (/Users/hqayyum/Desktop/Nisum/training/frameWorks/Nightswatch/tests/test.file.js:11:17)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

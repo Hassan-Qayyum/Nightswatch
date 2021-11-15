@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="3">
+
+  <testsuite name="window.navigation"
+    errors="0" failures="0" hostname="" id="" package="window.navigation" skipped="0"
+    tests="3" time="37.28" timestamp="">
+  
+    <testcase name="User Actions &amp; Prompts" classname="window.navigation" time="22.50" assertions="0">
+    </testcase>
+  
+    <testcase name="Mouse interaction" classname="window.navigation" time="4.113" assertions="0">
+    </testcase>
+  
+    <testcase name="Window Navigation" classname="window.navigation" time="10.68" assertions="0">
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
